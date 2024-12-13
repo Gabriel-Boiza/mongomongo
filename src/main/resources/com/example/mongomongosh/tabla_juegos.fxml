@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane fx:controller="com.example.mongomongosh.controllers.TablaJuegos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tabla_juegos" layoutX="148.0" layoutY="89.0" prefHeight="200.0" prefWidth="367.0">
+        <columns>
+          <TableColumn fx:id="columna_nombre" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="columna_genero" prefWidth="75.0" text="Genero" />
+            <TableColumn fx:id="columna_precio" prefWidth="75.0" text="Precio" />
+            <TableColumn fx:id="columna_fecha" minWidth="143.0" prefWidth="78.60000610351562" text="Fecha Lanzamiento" />
+        </columns>
+      </TableView>
+      <Label layoutX="286.0" layoutY="37.0" text="MONGO" />
+   </children>
+</Pane>
