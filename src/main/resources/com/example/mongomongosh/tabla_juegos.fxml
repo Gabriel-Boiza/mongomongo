@@ -10,7 +10,7 @@
    <children>
       <TableView fx:id="tabla_juegos" layoutX="148.0" layoutY="89.0" prefHeight="200.0" prefWidth="367.0">
         <columns>
-          <TableColumn fx:id="columna_nombre" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="columna_titulo" prefWidth="75.0" text="Nombre" />
           <TableColumn fx:id="columna_genero" prefWidth="75.0" text="Genero" />
             <TableColumn fx:id="columna_precio" prefWidth="75.0" text="Precio" />
             <TableColumn fx:id="columna_fecha" minWidth="143.0" prefWidth="78.60000610351562" text="Fecha Lanzamiento" />

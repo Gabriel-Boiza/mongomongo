@@ -5,10 +5,13 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
 public class DataBase {
+
     public static MongoDatabase conexion () {
+
         MongoDatabase mongo = null;
-        try(MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017")){
-            mongo = mongoClient.getDatabase("pruebaBBDD");
+        try{
+            MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+            mongo = mongoClient.getDatabase("gabriel");
             System.out.println("Estoy dentro de la bbdd");
         }
         catch (Exception e){

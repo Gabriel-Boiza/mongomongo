@@ -9,7 +9,8 @@ module com.example.mongomongosh {
     requires java.desktop;
 
     opens com.example.mongomongosh to javafx.fxml;
-    opens com.example.mongomongosh.models to java.base;
+    opens com.example.mongomongosh.models to javafx.base;
     opens com.example.mongomongosh.controllers to javafx.fxml;
+
     exports com.example.mongomongosh;
 }

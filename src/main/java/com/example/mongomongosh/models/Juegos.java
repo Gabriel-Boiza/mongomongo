@@ -9,13 +9,13 @@ import javax.print.Doc;
 import java.util.ArrayList;
 
 public class Juegos {
-        private String nombre;
+        private String titulo;
         private String genero;
-        private double precio;
+        private Double precio;
         private String fecha;
 
-    public Juegos(String nombre, String genero, double precio, String fecha){
-        this.nombre = nombre;
+    public Juegos(String titulo, String genero, double precio, String fecha){
+        this.titulo = titulo;
         this.genero = genero;
         this.precio = precio;
         this.fecha = fecha;
@@ -26,32 +26,43 @@ public class Juegos {
     }
 
     public ArrayList<Juegos> retornarJuegos(){
-        ArrayList<Juegos> arrayJuegos = new ArrayList<>();
         MongoDatabase database = DataBase.conexion();
-        try{
-            MongoCollection<Document> coleccion = database.getCollection("restaurante");
-            MongoCursor<Document> cursor = coleccion.find().iterator();
+        ArrayList<Juegos> arrayJuegos = new ArrayList<>();
 
-            while (cursor.hasNext()){
-                System.out.println("hola");
+        try{
+            MongoCollection<Document> collection = database.getCollection("juegos");
+            MongoCursor<Document> cursor = collection.find().iterator();
+
+            while(cursor.hasNext()){
+                Document doc = cursor.next();
+                String titulo = doc.getString("titulo");
+                String genero = doc.getString("genero");
+                double precio = doc.getDouble("precio");
+                String fecha = doc.getString("fecha_lanzamiento");
+
+                Juegos juego = new Juegos(titulo, genero, precio, fecha);
+
+                arrayJuegos.add(juego);
+
             }
 
-
-
-
-
-            System.out.println("hola");
-
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
-        catch (Exception e){
-            System.out.println(e.getMessage() + "es este catch");
-        }
+
         return arrayJuegos;
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Juegos{" +
+                "titulo='" + titulo + '\'' +
+                ", genero='" + genero + '\'' +
+                ", precio=" + precio +
+                ", fecha='" + fecha + '\'' +
+                '}';
+    }
 
     public String getGenero() {
         return genero;
@@ -61,12 +72,12 @@ public class Juegos {
         this.genero = genero;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public double getPrecio() {
