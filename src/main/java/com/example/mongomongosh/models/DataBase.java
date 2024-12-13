@@ -12,7 +12,6 @@ public class DataBase {
         try{
             MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
             mongo = mongoClient.getDatabase("gabriel");
-            System.out.println("Estoy dentro de la bbdd");
         }
         catch (Exception e){
             System.out.println(e.getMessage());

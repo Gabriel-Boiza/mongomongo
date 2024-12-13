@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<Pane fx:controller="com.example.mongomongosh.controllers.TablaJuegos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.DatePicker?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mongomongosh.controllers.TablaJuegos">
    <children>
-      <TableView fx:id="tabla_juegos" layoutX="148.0" layoutY="89.0" prefHeight="200.0" prefWidth="367.0">
+      <TableView fx:id="tabla_juegos" layoutX="55.0" layoutY="89.0" prefHeight="200.0" prefWidth="367.0">
         <columns>
           <TableColumn fx:id="columna_titulo" prefWidth="75.0" text="Nombre" />
           <TableColumn fx:id="columna_genero" prefWidth="75.0" text="Genero" />
@@ -16,6 +20,23 @@
             <TableColumn fx:id="columna_fecha" minWidth="143.0" prefWidth="78.60000610351562" text="Fecha Lanzamiento" />
         </columns>
       </TableView>
-      <Label layoutX="286.0" layoutY="37.0" text="MONGO" />
+      <Label layoutX="215.0" layoutY="33.0" text="MONGO" />
+      <HBox layoutX="55.0" layoutY="305.0" prefHeight="45.0" prefWidth="367.0" spacing="20.0">
+         <children>
+             <TextField fx:id="texto_titulo" promptText="Titulo" />
+             <TextField fx:id="texto_genero" promptText="Genero" />
+             <TextField fx:id="texto_precio" promptText="Precio" />
+             <DatePicker fx:id="texto_fecha" promptText="Fecha" />
+
+         </children>
+      </HBox>
+      <VBox layoutX="452.0" layoutY="89.0" prefHeight="200.0" prefWidth="98.0" spacing="32.0">
+         <children>
+            <Button fx:id="btn_crear" mnemonicParsing="false" prefWidth="70.0" text="Crear" />
+            <Button fx:id="btn_modificar" mnemonicParsing="false" prefWidth="70.0" text="Modficar" />
+            <Button fx:id="btn_limpiar" mnemonicParsing="false" prefWidth="70.0" text="Limpiar" />
+            <Button fx:id="btn_eliminar" mnemonicParsing="false" prefWidth="70.0" text="Eliminar" />
+         </children>
+      </VBox>
    </children>
 </Pane>
