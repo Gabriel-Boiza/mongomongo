@@ -28,6 +28,9 @@ public class TablaJuegos {
     @FXML TextField texto_precio;
     @FXML DatePicker texto_fecha;
 
+    @FXML Button borrar_genero;
+    @FXML ChoiceBox<String> eleccion_genero;
+
     @FXML Button btn_crear;
     @FXML Button btn_modificar;
     @FXML Button btn_limpiar;
@@ -45,6 +48,10 @@ public class TablaJuegos {
             mostrarJuegos();
             seleccionarJuego();
             accionesBtn();
+
+            ArrayList<String> elecciones = juegos.retornarElecciones();
+            System.out.println(elecciones);
+            eleccion_genero.setItems(FXCollections.observableArrayList(elecciones));
         }
     }
 
@@ -65,6 +72,11 @@ public class TablaJuegos {
                     juegos.insertarJuego(titulo, genero, valor_precio, fecha);
                     mostrarJuegos();
                 }
+                else{
+                    Alert alerta3 = new Alert(Alert.AlertType.WARNING);
+                    alerta3.setContentText("El juego ya existe");
+                    alerta3.showAndWait();
+                }
             }
             else{
                 Alert alertaValores = new Alert(Alert.AlertType.WARNING);
@@ -83,8 +95,16 @@ public class TablaJuegos {
                 String precio = texto_precio.getText();
                 Double valor_precio = Double.parseDouble(precio);
 
-                juegos.modificarJuego(juegoSeleccionado.getId(), titulo, genero, valor_precio, fecha);
-                mostrarJuegos();
+                if (!juegos.comprobarJuegoExiste(titulo, genero, valor_precio, fecha)){
+                    juegos.modificarJuego(juegoSeleccionado.getId(), titulo, genero, valor_precio, fecha);
+                    mostrarJuegos();
+                }
+                else{
+                    Alert alerta3 = new Alert(Alert.AlertType.WARNING);
+                    alerta3.setContentText("El juego ya existe");
+                    alerta3.showAndWait();
+                }
+
             }
             else{
                 Alert alertaValores = new Alert(Alert.AlertType.WARNING);
@@ -105,6 +125,10 @@ public class TablaJuegos {
                 alerta2.setContentText("Ningun juego seleccionado");
                 alerta2.showAndWait();
             }
+        });
+
+        borrar_genero.setOnAction(actionEvent -> {
+
         });
     }
 

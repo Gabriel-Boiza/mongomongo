@@ -123,6 +123,28 @@ public class Juegos {
         return existe;
     }
 
+    public ArrayList<String> retornarElecciones(){
+        ArrayList<String> array = new ArrayList<>();
+        MongoDatabase database = DataBase.conexion();
+
+        try{
+            MongoCollection<Document> collection = database.getCollection("juegos");
+            MongoCursor<Document> cursor = collection.find().iterator();
+
+            while(cursor.hasNext()){
+                Document doc = cursor.next();
+                String genero = doc.getString("genero");
+                if(!array.contains(genero)){
+                    array.add(genero);
+                }
+            }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return array;
+    }
+
 
     public String getId() {
         return id;
