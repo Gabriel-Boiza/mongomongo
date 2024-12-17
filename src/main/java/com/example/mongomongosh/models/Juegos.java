@@ -97,7 +97,15 @@ public class Juegos {
 
         Document filtro = new Document("_id", objectId);
 
-        collection.deleteOne(filtro);
+        collection.deleteMany(filtro);
+    }
+
+    public void eliminarJuegosGenero(String genero){
+        MongoDatabase database = DataBase.conexion();
+        MongoCollection<Document> collection = database.getCollection("juegos");
+
+        Document filtro = new Document("genero", genero);
+        collection.deleteMany(filtro);
     }
 
     public boolean comprobarJuegoExiste(String titulo, String genero, Double precio, String fecha){

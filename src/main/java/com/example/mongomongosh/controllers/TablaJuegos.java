@@ -48,10 +48,7 @@ public class TablaJuegos {
             mostrarJuegos();
             seleccionarJuego();
             accionesBtn();
-
-            ArrayList<String> elecciones = juegos.retornarElecciones();
-            System.out.println(elecciones);
-            eleccion_genero.setItems(FXCollections.observableArrayList(elecciones));
+            inicializarElecciones();
         }
     }
 
@@ -71,6 +68,7 @@ public class TablaJuegos {
                 if (!juegos.comprobarJuegoExiste(titulo, genero, valor_precio, fecha)){
                     juegos.insertarJuego(titulo, genero, valor_precio, fecha);
                     mostrarJuegos();
+                    inicializarElecciones();
                 }
                 else{
                     Alert alerta3 = new Alert(Alert.AlertType.WARNING);
@@ -98,6 +96,7 @@ public class TablaJuegos {
                 if (!juegos.comprobarJuegoExiste(titulo, genero, valor_precio, fecha)){
                     juegos.modificarJuego(juegoSeleccionado.getId(), titulo, genero, valor_precio, fecha);
                     mostrarJuegos();
+                    inicializarElecciones();
                 }
                 else{
                     Alert alerta3 = new Alert(Alert.AlertType.WARNING);
@@ -119,6 +118,7 @@ public class TablaJuegos {
             if(juegoSeleccionado != null){
                 juegos.eliminarJuego(juegoSeleccionado.getId());
                 mostrarJuegos();
+                inicializarElecciones();
             }
             else{
                 Alert alerta2 = new Alert(Alert.AlertType.WARNING);
@@ -128,7 +128,11 @@ public class TablaJuegos {
         });
 
         borrar_genero.setOnAction(actionEvent -> {
-
+            if(!eleccion_genero.getValue().isEmpty()){
+                juegos.eliminarJuegosGenero(eleccion_genero.getValue());
+                mostrarJuegos();
+                inicializarElecciones();
+            }
         });
     }
 
@@ -175,6 +179,12 @@ public class TablaJuegos {
         texto_genero.setText(juegoSeleccionado.getGenero());
         texto_precio.setText(juegoSeleccionado.getPrecio().toString());
         texto_fecha.setValue(fecha);
+    }
+
+    public void inicializarElecciones(){
+        ArrayList<String> elecciones = juegos.retornarElecciones();
+        System.out.println(elecciones);
+        eleccion_genero.setItems(FXCollections.observableArrayList(elecciones));
     }
 
     public boolean esDouble(String texto) {
